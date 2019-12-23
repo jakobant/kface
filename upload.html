@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script type=text/javascript>
+$(document).ready(function () {
+    $("#btnSubmit").click(function (event) {
+        event.preventDefault();
+        var form = $('#fileUploadForm')[0];
+        var data = new FormData(form);
+        $("#btnSubmit").prop("disabled", true);
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "http://localhost/who",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                $("#result").text(data);
+                console.log("SUCCESS : ", data);
+                $("#btnSubmit").prop("disabled", false);
+            },
+            error: function (e) {
+                $("#result").text(e.responseText);
+                console.log("ERROR : ", e);
+                $("#btnSubmit").prop("disabled", false);
+            }
+        });
+    });
+});
+		</script>
+</head>
+<body>
+<h1>jQuery Ajax submit Multipart form</h1>
+<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+    <input type="file" name="file"/><br/><br/>
+    <input type="submit" value="Submit" id="btnSubmit"/>
+</form>
+<h1>Ajax Post Result</h1>
+<span id="result"></span>
+</body>
+</html>
+

@@ -1,0 +1,17 @@
+version: '3'
+services:
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+  kface:
+    image: "jakobant/kface:0.95"
+    ports:
+      - "80:80"
+    volumes:
+      - ./known:/known
+      - ./match:/match
+    links:
+      - redis
+    environment:
+      - REDIS=redis
