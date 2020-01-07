@@ -108,3 +108,6 @@ Same as above, except the image rotation detection is not applied
 #### /who3
 Same as above, excpet upload image does get the faces and names drawn.
 
+## Thanks
+Thank [Adam Geitgey](https://github.com/ageitgey) for his very
+simple library. [face_recognition](https://github.com/ageitgey/face_recognition)
