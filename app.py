@@ -44,10 +44,10 @@ def mark_faces_locations(faces):
     draw = ImageDraw.Draw(img)
     n = 0
     for location in faces['locations']:
-        y = location[0];
-        xx = location[1];
-        yy = location[2];
-        x = location[3];
+        y = location[0]
+        xx = location[1]
+        yy = location[2]
+        x = location[3]
         draw.rectangle([x, y, xx, yy])
         draw.text((x, y),faces['names'][n], (255, 0, 0))
         n = n + 1
@@ -132,7 +132,7 @@ def who_is_it3():
             filename = save_resize_image(file, rotate=False)
             faces = detect_faces_in_image(filename)
             mark_faces_locations(faces)
-            return faces
+            return jsonify(faces)
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_face_image():
